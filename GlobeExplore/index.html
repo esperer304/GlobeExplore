@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globe Explore | Home</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="./Assets/logo.jpeg" alt="Globe Explore Logo"> 
+      <span>Globe Explore</span>
+    </div>
+
+    <div class="menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="vacations.html" class="nav-link">Vacations</a>
+        <a href="destinations.html" class="nav-link">Destinations</a>
+        <a href="cruises.html" class="nav-link">Cruises</a>
+        <a href="group-travel.html" class="nav-link">Group Travel</a>
+    </div>
+
+    <div class="icons">
+      <!-- Mail Icon (Email functionality) -->
+      <a href="mailto:contact@globeexplore.com" class="icon mail-icon">📧</a> 
+      <!-- Phone Icon (Call functionality) -->
+      <a href="tel:+23333212237890" class="icon phone-icon">📞</a> 
+      <!-- Checkout Icon (Navigates to checkout page) -->
+      <a href="checkout.html" class="icon checkout-icon"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </div>
+
+  <div class="hero-section">
+    <h1>Welcome to Globe Explore</h1>
+    <p>Your adventure begins here.</p>
+    
+    <div class="search-bar">
+      <input type="text" id="location-search" placeholder="Where to?" list="location-list"/>
+      <button onclick="searchLocation()">Search</button>
+    </div>
+    
+    <button class="explore-btn" onclick="goToExplorePage()">Explore Now</button>
+  </div>
+
+  <!-- Datalist for Location Suggestions -->
+  <datalist id="location-list"></datalist>
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>About Globe Explore</h2>
+        <p>At Globe Explore, we offer curated travel experiences across the world’s most breathtaking destinations. Join us on an unforgettable adventure!</p>
+      </div>
+  
+      <div class="footer-section contact">
+        <h2>Contact Us</h2>
+        <p><i class="fas fa-envelope"></i> Email: contact@globeexplore.com</p>
+        <p><i class="fas fa-phone-alt"></i> Phone: +233 332 1223 7890</p>
+        <p><i class="fas fa-map-marker-alt"></i> Location: 123 Travel Lane, WashingtonDC, DC</p>
+      </div>
+  
+      <div class="footer-section social">
+        <h2>Follow Us</h2>
+        <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Globe Explore. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Search Functionality -->
+  <script>
+    function goToExplorePage() {
+  window.location.href = "explore.html";  // Replace with your desired URL
+}
+    // Array of sample locations
+    const locations = [
+      "Paris", "New York", "Tokyo", "London", "Sydney", 
+      "Dubai", "Rome", "Cape Town", "Barcelona", "Los Angeles",
+      "Amsterdam", "Istanbul", "Bangkok", "Singapore", "Hong Kong", "Accra"
+    ];
+
+    // Populate datalist options
+    const locationList = document.getElementById("location-list");
+    locations.forEach(location => {
+      const option = document.createElement("option");
+      option.value = location;
+      locationList.appendChild(option);
+    });
+
+    // Function to handle search
+    function searchLocation() {
+      const searchInput = document.getElementById("location-search").value;
+      if (locations.includes(searchInput)) {
+        alert(`Searching for vacation in ${searchInput}...`);
+        // Implement further functionality here, e.g., redirect to search results
+      } else {
+        alert("Location not found! Please select a valid location from suggestions.");
+      }
+    }
+  </script>
+</body>
+</html>

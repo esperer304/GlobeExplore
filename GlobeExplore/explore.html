@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globe Explore | Explore</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navbar (same as the homepage) -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="./Assets/logo.jpeg" alt="Globe Explore Logo"> 
+      <span>Globe Explore</span>
+    </div>
+
+    <div class="menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="vacations.html" class="nav-link">Vacations</a>
+        <a href="destinations.html" class="nav-link">Destinations</a>
+        <a href="cruises.html" class="nav-link">Cruises</a>
+        <a href="group-travel.html" class="nav-link">Group Travel</a>
+    </div>
+
+    <div class="icons">
+      <!-- Mail Icon (Email functionality) -->
+      <a href="mailto:contact@globeexplore.com" class="icon mail-icon">📧</a> 
+      <!-- Phone Icon (Call functionality) -->
+      <a href="tel:+23333212237890" class="icon phone-icon">📞</a> 
+      <!-- Checkout Icon (Navigates to checkout page) -->
+      <a href="checkout.html" class="icon checkout-icon"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </div>
+
+  <!-- Hero Section for the Explore Page -->
+  <div class="hero-section">
+    <h1>Explore the World</h1>
+    <p>Find your next adventure in one of our beautiful destinations.</p>
+  </div>
+
+  <!-- Cities Section with Vacation Information and Images -->
+  <div class="cities-section">
+    <h2>Popular Destinations</h2>
+
+    <div class="city-card">
+      <h3>Paris</h3>
+      <p>Paris, the city of lights, offers romantic strolls along the Seine, visits to iconic landmarks like the Eiffel Tower, and a rich cultural experience.</p>
+      <div class="city-images">
+        <img src="./Assets/paris1.avif" alt="Paris Image 1" onclick="showDetails('paris1')">
+        <img src="./Assets/paris2.avif" alt="Paris Image 2" onclick="showDetails('paris2')">
+        <img src="./Assets/paris3.avif" alt="Paris Image 3" onclick="showDetails('paris3')">
+      </div>
+      <div id="paris1" class="city-details">
+        <p><strong>Paris Vacation Highlights:</strong> Visit the Eiffel Tower, Louvre Museum, and Montmartre. Enjoy fine dining and world-class shopping.</p>
+      </div>
+      <div id="paris2" class="city-details">
+        <p><strong>Paris Vacation Highlights:</strong> Explore the Seine River, Notre Dame, and other historical sites. Don't miss the charming cafes.</p>
+      </div>
+      <div id="paris3" class="city-details">
+        <p><strong>Paris Vacation Highlights:</strong> Take a day trip to Versailles, visit the Arc de Triomphe, and relax in the Luxembourg Gardens.</p>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <h3>New York</h3>
+      <p>Experience the vibrant life of New York, from Times Square to Central Park, and explore art, shopping, and dining in the heart of Manhattan.</p>
+      <div class="city-images">
+        <img src="./Assets/nyc1.webp" alt="New York Image 1" onclick="showDetails('nyc1')">
+        <img src="./Assets/nyc2.webp" alt="New York Image 2" onclick="showDetails('nyc2')">
+        <img src="./Assets/nyc3.avif" alt="New York Image 3" onclick="showDetails('nyc3')">
+      </div>
+      <div id="nyc1" class="city-details">
+        <p><strong>New York Vacation Highlights:</strong> Visit Times Square, the Statue of Liberty, Central Park, and the Empire State Building.</p>
+      </div>
+      <div id="nyc2" class="city-details">
+        <p><strong>New York Vacation Highlights:</strong> Explore the Metropolitan Museum of Art, Broadway, and vibrant neighborhoods like Brooklyn.</p>
+      </div>
+      <div id="nyc3" class="city-details">
+        <p><strong>New York Vacation Highlights:</strong> Don't miss a trip to the 9/11 Memorial, visit museums, and enjoy rooftop dining with stunning views.</p>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <h3>Tokyo</h3>
+      <p>Tokyo offers a fascinating mix of ancient temples, futuristic skyscrapers, and unique culture, making it a must-see destination for all types of travelers.</p>
+      <div class="city-images">
+        <img src="./Assets/tokyo1.jpeg" alt="Tokyo Image 1" onclick="showDetails('tokyo1')">
+        <img src="./Assets/tokyo2.jpeg" alt="Tokyo Image 2" onclick="showDetails('tokyo2')">
+        <img src="./Assets/tokyo3.jpeg" alt="Tokyo Image 3" onclick="showDetails('tokyo3')">
+      </div>
+      <div id="tokyo1" class="city-details">
+        <p><strong>Tokyo Vacation Highlights:</strong> Visit Shibuya Crossing, the Meiji Shrine, and enjoy shopping in Ginza. Explore both old and new Tokyo.</p>
+      </div>
+      <div id="tokyo2" class="city-details">
+        <p><strong>Tokyo Vacation Highlights:</strong> Take a trip to Mount Fuji, visit Akihabara for electronics, and explore the vibrant nightlife in Shinjuku.</p>
+      </div>
+      <div id="tokyo3" class="city-details">
+        <p><strong>Tokyo Vacation Highlights:</strong> Discover traditional tea ceremonies, try sushi in Tsukiji, and take in views from Tokyo Tower.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (same as the homepage) -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>About Globe Explore</h2>
+        <p>At Globe Explore, we offer curated travel experiences across the world’s most breathtaking destinations. Join us on an unforgettable adventure!</p>
+      </div>
+  
+      <div class="footer-section contact">
+        <h2>Contact Us</h2>
+        <p><i class="fas fa-envelope"></i> Email: contact@globeexplore.com</p>
+        <p><i class="fas fa-phone-alt"></i> Phone: +233 332 1223 7890</p>
+        <p><i class="fas fa-map-marker-alt"></i> Location: 123 Travel Lane, WashingtonDC, DC</p>
+      </div>
+  
+      <div class="footer-section social">
+        <h2>Follow Us</h2>
+        <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Globe Explore. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for toggling image description -->
+  <script>
+    function showDetails(imageId) {
+      // Hide all city details
+      const details = document.querySelectorAll('.city-details');
+      details.forEach(detail => detail.style.display = 'none');
+
+      // Show the clicked image's details
+      const cityDetail = document.getElementById(imageId);
+      cityDetail.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

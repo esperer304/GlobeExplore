@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globe Explore | Checkout</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script> <!-- Paystack SDK -->
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="./Assets/logo.jpeg" alt="Globe Explore Logo"> 
+      <span>Globe Explore</span>
+    </div>
+
+    <div class="menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="vacations.html" class="nav-link">Vacations</a>
+        <a href="destinations.html" class="nav-link">Destinations</a>
+        <a href="cruises.html" class="nav-link">Cruises</a>
+        <a href="group-travel.html" class="nav-link">Group Travel</a>
+    </div>
+
+    <div class="icons">
+      <a href="mailto:contact@globeexplore.com" class="icon mail-icon">📧</a> 
+      <a href="tel:+23333212237890" class="icon phone-icon">📞</a> 
+      <a href="checkout.html" class="icon checkout-icon"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </div>
+
+  <div class="checkout-container">
+    <h1>Checkout</h1>
+    <div class="checkout-content">
+      <div class="vacation-image">
+        <img src="./Assets/card.webp" alt="Vacation Image">
+        <div class="vacation-price">
+          <p><strong>Price:</strong> <span id="price" class="price-text">$999.99</span></p>
+        </div>
+        <div class="reviews-section">
+          <h3>Customer Reviews</h3>
+          <div class="rating">
+            <span>⭐⭐⭐⭐⭐</span>
+          </div>
+          <div class="review-comments">
+            <p>"Great experience! Highly recommend."</p>
+            <p>"The vacation was fantastic! Beautiful destination."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-details">
+        <h2>Your Booking Information</h2>
+        <div id="form-data">
+          <p>Loading your form data...</p>
+        </div>
+        
+        <button id="download-pdf">Download PDF</button>
+      
+      </div>
+    </div>
+
+    <div class="payment-section">
+      <button class="make-payment-button" id="make-payment-button">Make Payment</button>
+      <p class="payment-note">Payment validates booking</p>
+      <div class="payment-icons">
+        <i class="fas fa-credit-card visa-icon"></i>
+        <i class="fas fa-money-bill-wave money-icon"></i>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Price mapping based on destination
+    const priceMap = {
+      paris: 1299.99,
+      tokyo: 1499.99,
+      maldives: 1999.99,
+      newyork: 1099.99
+    };
+
+    // Extract form data from URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const formData = {
+      name: urlParams.get('name'),
+      gender: urlParams.get('gender'),
+      nationality: urlParams.get('nationality'),
+      address: urlParams.get('address'),
+      phone: urlParams.get('phone'),
+      email: urlParams.get('email'),
+      reason: urlParams.get('reason'),
+      destination: urlParams.get('intended-destination'),
+      occupation: urlParams.get('occupation'),
+      arrival: urlParams.get('arrival'),
+      departure: urlParams.get('departure'),
+      emergencyName: urlParams.get('emergency-name'),
+      emergencyRelationship: urlParams.get('emergency-relationship'),
+      emergencyAddress: urlParams.get('emergency-address'),
+      emergencyPhone: urlParams.get('emergency-phone'),
+      emergencyEmail: urlParams.get('emergency-email')
+    };
+
+    // Display form data on the page
+    const formDataDiv = document.getElementById('form-data');
+    formDataDiv.innerHTML = `
+      <h2>Personal Information</h2>
+      <p>Name: ${formData.name}</p>
+      <p>Gender: ${formData.gender}</p>
+      <p>Nationality: ${formData.nationality}</p>
+      <p>Address: ${formData.address}</p>
+      <p>Phone: ${formData.phone}</p>
+      <p>Email: ${formData.email}</p>
+      <h2>Travel Information</h2>
+      <p>Reason for Visit: ${formData.reason}</p>
+      <p>Destination: ${formData.destination}</p>
+      <p>Occupation: ${formData.occupation}</p>
+      <p>Arrival: ${formData.arrival}</p>
+      <p>Departure: ${formData.departure}</p>
+      <h2>Emergency Contact Information</h2>
+      <p>Name: ${formData.emergencyName}</p>
+      <p>Relationship: ${formData.emergencyRelationship}</p>
+      <p>Address: ${formData.emergencyAddress}</p>
+      <p>Phone: ${formData.emergencyPhone}</p>
+      <p>Email: ${formData.emergencyEmail}</p>
+    `;
+
+    // Set the price based on the destination selected in the form
+    const destination = formData.destination.toLowerCase().replace(/\s+/g, ''); // Normalize the destination string
+    const priceDisplay = document.getElementById('price');
+    const price = priceMap[destination] || 999.99; // Default price if the destination doesn't match
+    priceDisplay.textContent = `$${price.toFixed(2)}`;
+
+    // Handle Paystack payment
+    document.getElementById('make-payment-button').addEventListener('click', function() {
+      const amount = price * 100; // Paystack requires amount in kobo, so we multiply by 100.
+
+      // Call Paystack inline.js to initialize payment
+      const handler = PaystackPop.setup({
+        key: 'pk_test_7d6f9f129d52f42f6cf29025780601f0c0bb5b22', // Replace with your Paystack public key
+        email: formData.email,
+        amount: amount,  
+        ref: `ref-${Math.floor(Math.random() * 100000000)}`, // Generate a random reference
+        currency: 'GHS',  // Set the currency to GHS
+        callback: function(response) {
+          alert('Payment was successful! Reference: ' + response.reference);
+          
+          // Generate and download the PDF after successful payment
+          generatePDF(response.reference, price, formData);
+        },
+        onclose: function() {
+          alert('Payment was not completed!');
+        }
+      });
+
+      handler.openIframe(); // Open the Paystack payment window
+    });
+
+    // Function to generate and download the PDF
+    function generatePDF(paymentReference, paymentAmount, formData) {
+      const { name, gender, nationality, address, phone, email, reason, destination, occupation, arrival, departure, emergencyName, emergencyRelationship, emergencyAddress, emergencyPhone, emergencyEmail } = formData;
+      
+      const doc = new jsPDF();
+
+      doc.setFontSize(16);
+      doc.text('Booking Information', 20, 20);
+
+      // Personal Information
+      doc.setFontSize(12);
+      doc.text(`Name: ${name}`, 20, 30);
+      doc.text(`Gender: ${gender}`, 20, 40);
+      doc.text(`Nationality: ${nationality}`, 20, 50);
+      doc.text(`Address: ${address}`, 20, 60);
+      doc.text(`Phone: ${phone}`, 20, 70);
+      doc.text(`Email: ${email}`, 20, 80);
+
+      doc.text('Travel Information', 20, 100);
+      doc.text(`Reason for Visit: ${reason}`, 20, 110);
+      doc.text(`Destination: ${destination}`, 20, 120);
+      doc.text(`Occupation: ${occupation}`, 20, 130);
+      doc.text(`Arrival: ${arrival}`, 20, 140);
+      doc.text(`Departure: ${departure}`, 20, 150);
+
+      doc.text('Emergency Contact Information', 20, 170);
+      doc.text(`Name: ${emergencyName}`, 20, 180);
+      doc.text(`Relationship: ${emergencyRelationship}`, 20, 190);
+      doc.text(`Address: ${emergencyAddress}`, 20, 200);
+      doc.text(`Phone: ${emergencyPhone}`, 20, 210);
+      doc.text(`Email: ${emergencyEmail}`, 20, 220);
+
+      // Payment Information
+      doc.text('Payment Information', 20, 240);
+      doc.text(`Amount Paid: GHS ${paymentAmount.toFixed(2)}`, 20, 250);
+      doc.text(`Payment Reference: ${paymentReference}`, 20, 260);
+
+      // Save the PDF with the name "Booking-Confirmation.pdf"
+      const pdfBlob = doc.output('blob');
+      const url = URL.createObjectURL(pdfBlob);
+
+      // Create a temporary link to trigger the download
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Booking-Confirmation.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+
+</body>
+</html>
+

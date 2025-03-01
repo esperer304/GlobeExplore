@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globe Explore | Vacations</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="./Assets/logo.jpeg" alt="Globe Explore Logo"> 
+      <span>Globe Explore</span>
+    </div>
+
+    <div class="menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="vacations.html" class="nav-link">Vacations</a>
+        <a href="destinations.html" class="nav-link">Destinations</a>
+        <a href="cruises.html" class="nav-link">Cruises</a>
+        <a href="group-travel.html" class="nav-link">Group Travel</a>
+    </div>
+
+    <div class="icons">
+      <!-- Mail Icon (Email functionality) -->
+      <a href="mailto:contact@globeexplore.com" class="icon mail-icon">📧</a> 
+      <!-- Phone Icon (Call functionality) -->
+      <a href="tel:+23333212237890" class="icon phone-icon">📞</a> 
+      <!-- Checkout Icon (Navigates to checkout page) -->
+      <a href="checkout.html" class="icon checkout-icon"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </div>
+
+  <section class="vacation-locations">
+    <h2>Our Vacation Locations</h2>
+    <div class="locations-container" id="locations-container">
+      <!-- Initial visible cards -->
+      <div class="location-card">
+        <img src="./Assets/beach.jpeg" alt="Beach Getaway">
+        <h3>Beach Getaway</h3>
+        <p>Relax on pristine beaches with luxurious accommodations and stunning views.</p>
+      </div>
+      <div class="location-card">
+        <img src="./Assets/desert.jpeg" alt="Desert Retreat">
+        <h3>Desert Retreat</h3>
+        <p>Immerse yourself in nature with adventures of the Dubai desert.</p>
+      </div>
+      <div class="location-card">
+        <img src="./Assets/city.jpeg" alt="City Escape">
+        <h3>City Escape</h3>
+        <p>Discover the charm of nature with curated tours and exclusive experiences.</p>
+      </div>
+      <div class="location-card">
+        <img src="./Assets/country.avif" alt="Countryside Relaxation">
+        <h3>Countryside Relaxation</h3>
+        <p>Unwind in tranquil countryside locations with picturesque landscapes.</p>
+      </div>
+
+      <!-- Hidden cards initially -->
+      <div class="location-card hidden">
+        <img src="./Assets/explore.webp" alt="Mountain Adventure">
+        <h3>Mountain Adventure</h3>
+        <p>Explore the great outdoors with guided mountain hikes and stunning views.</p>
+      </div>
+      <div class="location-card hidden">
+        <img src="./Assets/jungle.jpeg" alt="Jungle Escape">
+        <h3>Jungle Escape</h3>
+        <p>Get immersed in the wild beauty of rainforests with guided excursions.</p>
+      </div>
+    </div>
+    <button class="show-more" id="show-more-btn">Show More</button>
+  </section>
+
+  <section class="customer-reviews">
+    <h2>Customer Reviews</h2>
+    <div class="reviews-container">
+      <div class="review">
+        <img src="./Assets/review1.jpeg" alt="Review 1">
+        <p>"Our vacation was amazing! The views were breathtaking, and the service was top-notch!"</p>
+        <span>- Cyril Davis</span>
+      </div>
+      <div class="review">
+        <img src="./Assets/review2.jpeg" alt="Review 2">
+        <p>"We had the best time! Everything was well organized and exceeded our expectations!"</p>
+        <span>- Lona Ayeh</span>
+      </div>
+    </div>
+  </section>
+
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>About Globe Explore</h2>
+        <p>At Globe Explore, we offer curated travel experiences across the world’s most breathtaking destinations. Join us on an unforgettable adventure!</p>
+      </div>
+      <div class="footer-section contact">
+        <h2>Contact Us</h2>
+        <p><i class="fas fa-envelope"></i> Email: contact@globeexplore.com</p>
+        <p><i class="fas fa-phone-alt"></i> Phone: +123 456 7890</p>
+        <p><i class="fas fa-map-marker-alt"></i> Location: 123 Travel Lane, Wanderlust City, WC</p>
+      </div>
+      <div class="footer-section social">
+        <h2>Follow Us</h2>
+        <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Globe Explore. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('show-more-btn').addEventListener('click', function() {
+      const hiddenCards = document.querySelectorAll('.location-card.hidden');
+      hiddenCards.forEach(card => {
+        card.classList.remove('hidden');
+      });
+      // Hide the Show More button if all cards are visible
+      if (document.querySelectorAll('.location-card.hidden').length === 0) {
+        this.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
